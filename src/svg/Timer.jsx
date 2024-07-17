@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Timer = (props) => {
   return (
@@ -6,8 +6,7 @@ const Timer = (props) => {
       {...props}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <g id="Calendar / Timer">
         <path
           id="Vector"

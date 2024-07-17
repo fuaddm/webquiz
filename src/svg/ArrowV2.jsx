@@ -1,8 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const ArrowV2 = (props) => {
   return (
-    <svg {...props} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
