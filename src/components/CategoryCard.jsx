@@ -30,10 +30,10 @@ const CategoryCard = ({ categories }) => {
 
   return (
     <div className={`${styles.card} w-[400px] overflow-hidden rounded-3xl bg-[#24272e] p-8`}>
-      <div className="relative mb-6 flex h-[400px] items-center justify-center">
+      <div className="relative flex h-[400px] items-center justify-center">
         <div
           style={{ transform: `translateX(-${selected * 120}px)` }}
-          className="absolute left-[120px] top-0 z-50 flex h-full w-full items-center justify-center gap-8 transition-all">
+          className="absolute left-[120px] top-0 z-50 flex h-full w-full items-center justify-center gap-8 transition-all duration-300">
           {categories.map((item, index) => {
             return (
               <div
@@ -50,7 +50,7 @@ const CategoryCard = ({ categories }) => {
             );
           })}
         </div>
-        <div className={`${styles.circleInCenter} relative z-40 h-28 w-28 rounded-full border-2 border-white/60 p-2.5`}>
+        <div className={`${styles.circleInCenter} relative z-50 h-28 w-28 rounded-full border-2 border-white/60 p-2.5`}>
           <div className={`${styles.circle} absolute left-1/2 top-0 grid h-4 w-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#24272e] p-1`}>
             <div className="h-2 w-2 rounded-full bg-white"></div>
           </div>
@@ -58,11 +58,13 @@ const CategoryCard = ({ categories }) => {
             <div className="h-2 w-2 rounded-full bg-white"></div>
           </div>
           <div className="absolute left-1/2 top-0 h-[150px] w-[1px] -translate-x-1/2 -translate-y-full bg-gradient-to-t from-white/40"></div>
+          <div className="absolute bottom-0 left-1/2 h-[80px] w-[1px] -translate-x-1/2 translate-y-full bg-gradient-to-b from-white/40"></div>
         </div>
         <div className="absolute left-0 top-0 z-30 h-full w-full">
           <div className="absolute left-1/2 top-1/2 aspect-square w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border-t border-white/10"></div>
           <div className="absolute left-1/2 top-1/2 aspect-square w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border-t border-white/30 bg-white/5"></div>
-          <div className={`${styles.squareShadow} absolute left-0 top-1/2 h-[130px] w-full -translate-y-[30px] rounded-full bg-[#24272e]`}></div>
+          <div className={`${styles.squareShadow} absolute left-1/2 top-1/2 h-[130px] w-10/12 -translate-x-1/2 -translate-y-[30px] rounded-full bg-[#24272e]`}></div>
+          <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-base font-normal text-white/80">{categories[selected].questionCount} QUESTIONS</span>
         </div>
       </div>
       <div className="relative z-50">
