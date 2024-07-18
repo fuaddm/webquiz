@@ -7,16 +7,16 @@ body {
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
+    'Segoe UI',
     Roboto,
     Oxygen,
     Ubuntu,
     Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
+    'Open Sans',
+    'Helvetica Neue',
     sans-serif;
   color: #01283d;
-  background: #01283d;
+  background: #24272e;
   font-size: 16px;
 }
 .selectedOption {
