@@ -4,6 +4,29 @@ import styles from './category.module.css';
 
 const CategoryCard = ({ categories }) => {
   const [selected, setSelected] = useState(0);
+  const [touchCords, setTouchCords] = useState({
+    touchStartX: null,
+    touchEndX: null,
+  });
+
+  function touchStart(e) {
+    setTouchCords((prevCords) => {
+      return {
+        ...prevCords,
+        touchStartX: e.changedTouches[0].clientX,
+      };
+    });
+  }
+  function touchEnd(e) {
+    setTouchCords((prevCords) => {
+      if (prevCords.touchStartX - e.changedTouches[0].clientX > 0) {
+      }
+      return {
+        ...prevCords,
+        touchEndX: e.changedTouches[0].clientX,
+      };
+    });
+  }
 
   useEffect(() => {
     function arrowEvents(e) {
@@ -29,8 +52,11 @@ const CategoryCard = ({ categories }) => {
   }, []);
 
   return (
-    <div className={`${styles.card} w-[400px] overflow-hidden rounded-3xl bg-[#24272e] p-8`}>
-      <div className="relative flex h-[400px] items-center justify-center">
+    <div className={`${styles.card} w-full overflow-hidden rounded-3xl bg-[#24272e] p-8 md:w-[400px]`}>
+      <div
+        onTouchStart={touchStart}
+        onTouchEnd={touchEnd}
+        className="relative flex h-[400px] items-center justify-center">
         <div
           style={{ transform: `translateX(-${selected * 120}px)` }}
           className="absolute left-[120px] top-0 z-50 flex h-full w-full items-center justify-center gap-8 transition-all duration-300">
@@ -63,7 +89,7 @@ const CategoryCard = ({ categories }) => {
         <div className="absolute left-0 top-0 z-30 h-full w-full">
           <div className="absolute left-1/2 top-1/2 aspect-square w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border-t border-white/10"></div>
           <div className="absolute left-1/2 top-1/2 aspect-square w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border-t border-white/30 bg-white/5"></div>
-          <div className={`${styles.squareShadow} absolute left-1/2 top-1/2 h-[130px] w-10/12 -translate-x-1/2 -translate-y-[30px] rounded-full bg-[#24272e]`}></div>
+          <div className={`${styles.squareShadow} absolute left-1/2 top-1/2 h-[130px] w-9/12 -translate-x-1/2 -translate-y-[30px] rounded-full bg-[#24272e]`}></div>
           <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-base font-normal text-white/80">{categories[selected].questionCount} QUESTIONS</span>
         </div>
       </div>

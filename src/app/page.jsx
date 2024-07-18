@@ -18,14 +18,14 @@ export default async function Home() {
     ],
   };
   return (
-    <div className="min-h-screen bg-[#1a1d24]">
-      <div className="container mx-auto flex h-screen flex-col items-center py-20">
-        <div className="mb-20">
-          <div className="mb-6 text-center text-6xl font-bold text-white">Web Quiz: Dive into HTML, CSS & JS</div>
-          <div className="text-center text-xl font-normal text-slate-400">Test your knowledge and skills in web development with our interactive quiz! Dive into three essential categories:</div>
+    <div className="container mx-auto mb-20 flex flex-col items-center px-6 py-20 pb-10">
+      <div className="mb-12">
+        <div className="mb-6 text-center text-2xl font-bold text-white md:text-4xl xl:text-6xl">Web Quiz: Dive into HTML, CSS & JS</div>
+        <div className="text-center text-base font-normal text-slate-400 md:text-lg xl:text-xl">
+          Test your knowledge and skills in web development with our interactive quiz! Dive into three essential categories:
         </div>
-        <div className="grid w-full place-items-center">{data && <CategoryCard categories={data.categories} />}</div>
       </div>
+      <div className="grid w-full place-items-center">{data && <CategoryCard categories={data.categories} />}</div>
     </div>
   );
 }
