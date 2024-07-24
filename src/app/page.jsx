@@ -15,6 +15,7 @@ export default async function Home() {
     console.log('first');
     data = await resp.json();
   }
+
   return (
     <div className="container mb-20 flex flex-col items-center pb-6 pt-10">
       <Header />
