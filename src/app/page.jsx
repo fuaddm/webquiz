@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 export default async function Home() {
   const headersList = headers();
   const domain = headersList.get('host') || '';
-  const fullUrl = headersList.get('referer') || '';
+  const fullUrl = 'http://127.0.0.1:3000';
 
   console.log(fullUrl);
   const resp = await fetch(`${fullUrl}/api/category`);
