@@ -3,7 +3,7 @@ import styles from './stars.module.css';
 
 const Stars = () => {
   return (
-    <div className="absolute left-0 top-0 -z-10 h-full w-full overflow-hidden">
+    <div className="absolute left-0 top-0 -z-10 hidden h-full w-full overflow-hidden md:block">
       <div className={`${styles.stars} absolute left-0 top-0 -z-10 h-full w-full`}>
         <div className="absolute left-1/3 top-[140px] h-2 w-2 rounded-full bg-white/100"></div>
         <div className="absolute right-[100px] top-[240px] h-1 w-1 rounded-full bg-white/100"></div>
