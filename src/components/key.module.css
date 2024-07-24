@@ -1,0 +1,25 @@
+.key {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0px 16px 10px -10px rgba(0, 0, 0, 1);
+}
+.key::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100px) translateY(-100px) rotate(45deg);
+  box-shadow: 10px 0px 10px -6px rgba(255, 255, 255, 0.1);
+}
+.key:active {
+  outline: none;
+}
+.key:focus {
+  outline: none;
+}
+.keyInner {
+  box-shadow: -1px 0px 2px 0px rgba(255, 255, 255, 0.2);
+}
