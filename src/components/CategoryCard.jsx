@@ -1,12 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './category.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-const CategoryCard = ({ categories }) => {
+const CategoryCard = ({ categories, selected, setSelected }) => {
   const router = useRouter();
-  const [selected, setSelected] = useState(0);
 
   function goRight() {
     setSelected((prev) => {
@@ -31,6 +30,8 @@ const CategoryCard = ({ categories }) => {
         goRight();
       } else if (e.code == 'ArrowLeft') {
         goLeft();
+      } else if (e.code == 'Enter') {
+        submit();
       }
     }
     window.addEventListener('keydown', arrowEvents);
@@ -44,7 +45,7 @@ const CategoryCard = ({ categories }) => {
 
   return (
     <div className="w-full md:w-[400px]">
-      <div className="relative z-10 mb-4 flex items-center justify-between px-4">
+      <div className="relative z-10 mb-4 flex items-center justify-between px-4 lg:hidden">
         <button
           onClick={goLeft}
           className={`${styles.navigationBtn} overflow-hidden rounded-xl bg-[#24272e] px-12 py-2 text-base font-medium text-white/80`}>
@@ -94,7 +95,7 @@ const CategoryCard = ({ categories }) => {
             <div className="absolute left-1/2 top-1/2 aspect-square w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border-t border-white/30 bg-white/5"></div>
             <div className={`${styles.squareShadow} absolute left-1/2 top-1/2 h-[130px] w-9/12 -translate-x-1/2 -translate-y-[30px] rounded-full bg-[#24272e]`}></div>
             <div className={`${styles.questionCountShadow} absolute bottom-4 left-1/2 -translate-x-1/2 rounded-xl bg-[#3b3e43] px-5 py-2`}>
-              <span className="text-sm font-medium text-white/80">{categories[selected].questionCount} QUESTIONS</span>
+              <span className="whitespace-nowrap text-sm font-medium text-white/80">{categories[selected].questionCount} QUESTIONS</span>
             </div>
           </div>
         </div>

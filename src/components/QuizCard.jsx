@@ -1,12 +1,12 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SvgFlag from '../svg/Flag';
 import SvgArrow from '../svg/Arrow';
 import SvgSuccess from '../svg/Success';
 import ArrowV2 from '@/svg/ArrowV2';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import SvgError from '@/svg/Error';
+import QuizReview from './QuizReview';
+import Results from './Results';
 
 const QuizCard = ({ data }) => {
   const router = useRouter();
@@ -62,156 +62,21 @@ const QuizCard = ({ data }) => {
 
   if (isFinished && isReviewAnswer) {
     return (
-      <div className="mx-auto flex h-fit w-full max-w-[900px] flex-col justify-center rounded-3xl bg-white p-6">
-        <div className="mb-6 text-center text-2xl font-bold">Quiz</div>
-        <div className="flex flex-col gap-3">
-          {data.questions.map((item, index) => {
-            return (
-              <div
-                key={item._id}
-                className="grid grid-cols-[min-content_1fr] gap-2">
-                <div className="text-lg font-normal">{index + 1}. </div>
-                <div className="flex flex-col">
-                  <div className="mb-3 text-xl font-semibold">{item.question}</div>
-                  <div className="flex flex-col gap-3">
-                    {item.options.map((option, optionsIndex) => {
-                      if (userData[index].answered == userData[index].answer) {
-                        return (
-                          <label
-                            key={option + optionsIndex}
-                            htmlFor={option + optionsIndex}>
-                            <input
-                              type="radio"
-                              className="hidden"
-                              name="options"
-                              id={option + optionsIndex}
-                            />
-                            <div className={`${userData[index].answered == optionsIndex ? 'bg-green-600' : 'bg-slate-100'} grid grid-cols-[1fr_min-content] items-center gap-4 rounded-lg p-4`}>
-                              <div className={`${userData[index].answered == optionsIndex ? 'text-white' : ''} text-base font-normal`}>{option}</div>
-                              <div className={`${userData[index].answered == optionsIndex ? 'border-white bg-white' : 'border-slate-500'} grid h-5 w-5 place-items-center rounded-full border-2`}>
-                                <SvgSuccess className={`${userData[index].answered == optionsIndex ? 'stroke-green-600' : 'stroke-transparent'} h-4 w-4`} />
-                              </div>
-                            </div>
-                          </label>
-                        );
-                      } else if (userData[index].answer == optionsIndex && userData[index].answered != null) {
-                        return (
-                          <label
-                            key={option + optionsIndex}
-                            htmlFor={option + optionsIndex}>
-                            <input
-                              type="radio"
-                              className="hidden"
-                              name="options"
-                              id={option + optionsIndex}
-                            />
-                            <div className="grid grid-cols-[1fr_min-content] items-center gap-4 rounded-lg bg-green-600 p-4">
-                              <div className="text-base font-normal text-white">{option}</div>
-                              <div className="grid h-5 w-5 place-items-center rounded-full border-2 border-white bg-white">
-                                <SvgSuccess className="h-4 w-4 stroke-green-600" />
-                              </div>
-                            </div>
-                          </label>
-                        );
-                      } else if (userData[index].answer == optionsIndex && userData[index].answered == null) {
-                        return (
-                          <label
-                            key={option + optionsIndex}
-                            htmlFor={option + optionsIndex}>
-                            <input
-                              type="radio"
-                              className="hidden"
-                              name="options"
-                              id={option + optionsIndex}
-                            />
-                            <div className="grid grid-cols-[1fr_min-content] items-center gap-4 rounded-lg bg-slate-600 p-4">
-                              <div className="text-base font-normal text-white">{option}</div>
-                              <div className="grid h-5 w-5 place-items-center rounded-full border-2 border-white bg-white">
-                                <SvgSuccess className="h-4 w-4 stroke-slate-600" />
-                              </div>
-                            </div>
-                          </label>
-                        );
-                      } else if (userData[index].answered == optionsIndex) {
-                        return (
-                          <label
-                            key={option + optionsIndex}
-                            htmlFor={option + optionsIndex}>
-                            <input
-                              type="radio"
-                              className="hidden"
-                              name="options"
-                              id={option + optionsIndex}
-                            />
-                            <div className="grid grid-cols-[1fr_min-content] items-center gap-4 rounded-lg bg-red-600 p-4">
-                              <div className="text-base font-normal text-white">{option}</div>
-                              <div className="grid h-5 w-5 place-items-center rounded-full border-2 border-white bg-white">
-                                <SvgError className="h-3 w-3 fill-red-600" />
-                              </div>
-                            </div>
-                          </label>
-                        );
-                      }
-                      return (
-                        <label
-                          key={option + optionsIndex}
-                          htmlFor={option + optionsIndex}>
-                          <input
-                            type="radio"
-                            className="hidden"
-                            name="options"
-                            id={option + optionsIndex}
-                          />
-                          <div className="grid grid-cols-[1fr_min-content] items-center gap-4 rounded-lg bg-slate-100 p-4">
-                            <div className="text-base font-normal">{option}</div>
-                            <div className="grid h-5 w-5 place-items-center rounded-full border-2 border-slate-500">
-                              <SvgSuccess className="h-4 w-4 stroke-transparent" />
-                            </div>
-                          </div>
-                        </label>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <QuizReview
+        data={data}
+        userData={userData}
+        setIsReviewAnswer={setIsReviewAnswer}
+      />
     );
   } else if (isFinished) {
     return (
-      <div className="mx-auto flex h-fit w-full max-w-[600px] flex-col items-center justify-center rounded-3xl bg-white px-4 py-6">
-        <Image
-          src="/party.svg"
-          width={120}
-          height={120}
-          className="mb-4"
-          alt="party"
-        />
-        <span className="mb-4 text-center text-xl font-bold">Congratulations 🎉</span>
-        <span className="mb-3 text-6xl font-semibold text-blue-500">{points}</span>
-        <span className="mb-6 text-base font-medium text-slate-600">Points</span>
-        <span className="mb-6 text-base font-medium text-slate-600">
-          You have completed exactly{' '}
-          <span className="font-bold text-blue-500">
-            {result.trueAnswered}/{userData.length}
-          </span>{' '}
-          questions
-        </span>
-        <div className="flex w-full flex-col items-center justify-center gap-2">
-          <button
-            onClick={() => router.push('/')}
-            className="grid w-full place-items-center rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-300 hover:bg-blue-700 md:w-fit">
-            Ok, done
-          </button>
-          <button
-            onClick={() => setIsReviewAnswer(true)}
-            className="grid w-full place-items-center rounded-lg bg-slate-100 px-6 py-3 font-medium transition duration-300 hover:bg-slate-200 md:w-fit">
-            Review the answer
-          </button>
-        </div>
-      </div>
+      <Results
+        points={points}
+        result={result}
+        userData={userData}
+        router={router}
+        setIsReviewAnswer={setIsReviewAnswer}
+      />
     );
   }
   return (
