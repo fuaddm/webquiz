@@ -1,11 +1,18 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Stars from '@/components/Stars';
+import { headers } from 'next/headers';
 
 export default async function Home() {
-  const resp = await fetch('http://127.0.0.1:3000/api/category');
+  const headersList = headers();
+  const domain = headersList.get('host') || '';
+  const fullUrl = headersList.get('referer') || '';
+
+  console.log(fullUrl);
+  const resp = await fetch(`${fullUrl}/api/category`);
   let data = null;
   if (resp.ok) {
+    console.log('first');
     data = await resp.json();
   }
   return (
