@@ -31,7 +31,7 @@ const CategoryCard = ({ categories, selected, setSelected }) => {
       } else if (e.code == 'ArrowLeft') {
         goLeft();
       } else if (e.code == 'Enter') {
-        submit();
+        router.push(`/quiz/${categories[selected]._id}`);
       }
     }
     window.addEventListener('keydown', arrowEvents);
@@ -39,9 +39,16 @@ const CategoryCard = ({ categories, selected, setSelected }) => {
     return () => window.removeEventListener('keydown', arrowEvents);
   }, []);
 
-  function submit() {
-    router.push(`/quiz/${categories[selected]._id}`);
-  }
+  useEffect(() => {
+    function enterEvent(e) {
+      if (e.code == 'Enter') {
+        router.push(`/quiz/${categories[selected]._id}`);
+      }
+    }
+    window.addEventListener('keydown', enterEvent);
+
+    return () => window.removeEventListener('keydown', enterEvent);
+  }, [selected]);
 
   return (
     <div className="w-full md:w-[400px]">
@@ -103,7 +110,7 @@ const CategoryCard = ({ categories, selected, setSelected }) => {
           <div className="mb-1 text-2xl font-semibold text-white/90">{categories[selected].name}</div>
           <div className="mb-5 text-lg font-normal text-white/70">Test your {categories[selected].name} skills from basics to advanced!</div>
           <button
-            onClick={submit}
+            onClick={() => router.push(`/quiz/${categories[selected]._id}`)}
             className={`${styles.button} w-fit rounded-full px-8 py-3 transition-all will-change-[box-shadow]`}>
             <span className="text-lg font-medium text-white/80">Start quiz</span>
           </button>

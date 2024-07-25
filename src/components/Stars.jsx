@@ -12,6 +12,10 @@ const Stars = () => {
         <div className="absolute left-[120px] top-[240px] h-1.5 w-1.5 rounded-full bg-white/60"></div>
         <div className="absolute left-[200px] top-[640px] h-1.5 w-1.5 rounded-full bg-white/60"></div>
         <div className="absolute left-1/2 top-[640px] h-1 w-1 rounded-full bg-white/100"></div>
+        <div className="absolute bottom-[120px] left-[100px] h-1 w-1 rounded-full bg-white/100"></div>
+        <div className="absolute bottom-[120px] left-1/3 h-0.5 w-0.5 rounded-full bg-white/30"></div>
+        <div className="absolute bottom-[60px] left-1/4 h-0.5 w-0.5 rounded-full bg-white/30"></div>
+        <div className="absolute left-1/2 top-1/2 h-1 w-1 rounded-full bg-white/100"></div>
       </div>
     </div>
   );
