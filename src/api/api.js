@@ -18,8 +18,8 @@ export async function getCategories() {
     categories = JSON.parse(JSON.stringify(categories));
 
     return { categories };
-  } catch (error) {
-    console.error('Error fetching categories:', error);
+  } catch {
+    return { error: 'Sorry, there are some problems with server.' };
   }
 }
 
@@ -27,7 +27,7 @@ export async function getQuestions(categoryId) {
   try {
     // Ensure we have the category ID
     if (!categoryId) {
-      return { message: 'Category ID is required' };
+      return { error: 'Sorry, there are some problems with server.' };
     }
 
     // Connect to MongoDB
@@ -36,14 +36,13 @@ export async function getQuestions(categoryId) {
     // Fetch category with populated questions
     let category = await Category.findById(categoryId).populate('questions').exec();
     if (!category) {
-      return { message: 'Category not found' };
+      return { error: 'Sorry, there are some problems with server.' };
     }
 
     category = JSON.parse(JSON.stringify(category));
 
     return { questions: category.questions };
   } catch (error) {
-    console.error('Error fetching questions:', error);
-    return { message: 'Internal Server Error' };
+    return { error: 'Sorry, there are some problems with server.' };
   }
 }

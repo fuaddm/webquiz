@@ -1,12 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import SvgFlag from '../svg/Flag';
-import SvgArrow from '../svg/Arrow';
-import SvgSuccess from '../svg/Success';
+import SvgFlag from '@/svg/Flag';
+import SvgArrow from '@/svg/Arrow';
+import SvgSuccess from '@/svg/Success';
 import ArrowV2 from '@/svg/ArrowV2';
 import { useRouter } from 'next/navigation';
-import QuizReview from './QuizReview';
-import Results from './Results';
+import QuizReview from '@/components/Page/QuizReview';
+import Results from '@/components/Page/Results';
 
 const QuizCard = ({ data }) => {
   const router = useRouter();
