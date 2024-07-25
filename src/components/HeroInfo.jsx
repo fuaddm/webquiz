@@ -8,7 +8,7 @@ import HtmlLogo from '@/svg/HtmlLogo';
 import JavascriptLogo from '@/svg/JavascriptLogo';
 import SvgTerminal from '@/svg/Terminal';
 import SvgV8Engine from '@/svg/V8Engine';
-import ArrowKeys from './ArrowKeys';
+import ArrowKeys from './Keys/ArrowKeys';
 
 const HeroInfo = ({ active, setActive }) => {
   return (

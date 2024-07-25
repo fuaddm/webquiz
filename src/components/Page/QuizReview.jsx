@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgSuccess from '../svg/Success';
+import SvgSuccess from '@/svg/Success';
 import SvgError from '@/svg/Error';
 import ArrowV2 from '@/svg/ArrowV2';
 
