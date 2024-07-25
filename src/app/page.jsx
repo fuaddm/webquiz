@@ -2,6 +2,7 @@ import { getCategories } from '@/api/api';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Stars from '@/components/Stars';
+import { headers } from 'next/headers';
 
 export default async function Home() {
   let data = null;
