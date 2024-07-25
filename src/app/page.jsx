@@ -11,7 +11,7 @@ export default async function Home() {
     <div className="container mb-20 flex flex-col items-center pb-6 pt-10">
       <Header />
       <Stars />
-      <div className="mb-16"></div>
+      <div className="mb-28 md:mb-16"></div>
       {!data.error && (
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <Hero data={data} />

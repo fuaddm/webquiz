@@ -1,12 +1,13 @@
 'use client';
 import React, { useState } from 'react';
-import SvgFlag from '@/svg/Flag';
 import SvgArrow from '@/svg/Arrow';
 import SvgSuccess from '@/svg/Success';
 import ArrowV2 from '@/svg/ArrowV2';
 import { useRouter } from 'next/navigation';
 import QuizReview from '@/components/Page/QuizReview';
 import Results from '@/components/Page/Results';
+import { CodeBlock, github } from 'react-code-blocks';
+import js_beautify from 'js-beautify';
 
 const QuizCard = ({ data }) => {
   const router = useRouter();
@@ -60,6 +61,22 @@ const QuizCard = ({ data }) => {
 
   const points = ((result.trueAnswered / userData.length) * 10).toFixed(1);
 
+  let questionText = question;
+
+  function getCodePart(question) {
+    const tagStart = question.indexOf('<fdCode>');
+    const tagEnd = question.indexOf('</fdCode>');
+    if (tagStart != -1 && tagEnd != -1) {
+      const codePart = question.slice(tagStart + 8, tagEnd);
+      questionText = questionText.split('');
+      questionText.splice(tagStart, tagEnd + 8);
+      questionText = questionText.join('');
+      return codePart;
+    }
+    return null;
+  }
+  const codePart = getCodePart(question);
+
   if (isFinished && isReviewAnswer) {
     return (
       <QuizReview
@@ -80,7 +97,7 @@ const QuizCard = ({ data }) => {
     );
   }
   return (
-    <div className="mx-auto grid h-full max-w-[600px] grid-rows-[min-content_1fr] md:min-w-[600px]">
+    <div className="grid w-full grid-cols-1 grid-rows-[min-content_1fr] md:min-w-[600px] md:max-w-[600px]">
       <div className="mb-16 grid grid-cols-3 items-center gap-4">
         <div
           onClick={() => router.push('/')}
@@ -95,42 +112,55 @@ const QuizCard = ({ data }) => {
         <div className="absolute left-1/2 top-0 z-20 h-full w-[calc(100%-130px)] -translate-x-1/2 -translate-y-12 rounded-3xl bg-white/5 px-4 py-6 backdrop-blur-sm"></div>
         <div className="absolute left-1/2 top-0 z-30 h-full w-[calc(100%-80px)] -translate-x-1/2 -translate-y-8 rounded-3xl bg-white/20 px-4 py-6 backdrop-blur-sm"></div>
         <div className="absolute left-1/2 top-0 z-40 h-full w-[calc(100%-30px)] -translate-x-1/2 -translate-y-4 rounded-3xl bg-white/40 px-4 py-6 backdrop-blur-sm"></div>
-        <div className="relative z-50 flex h-full w-full flex-col justify-between rounded-3xl bg-white px-4 pb-3 pt-6">
-          <div>
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm font-semibold text-slate-500">Choose 1 of 4 answers</span>
+        <div className="relative z-50 flex h-full w-full flex-col rounded-3xl bg-white px-4 pb-3 pt-6">
+          <div className="mb-4 flex items-center justify-between">
+            <span className="text-sm font-semibold text-slate-500">Choose 1 of 4 answers</span>
+          </div>
+          <div className="mb-6 text-xl font-semibold">
+            {questionText}
+            <div className="text-base">
+              {codePart && (
+                <div className="mt-2">
+                  <CodeBlock
+                    text={js_beautify(codePart, {})}
+                    language={'javascript'}
+                    showLineNumbers={false}
+                    wrapLongLines={true}
+                    theme={github}
+                  />
+                </div>
+              )}
             </div>
-            <div className="mb-6 text-xl font-semibold">{question}</div>
-            <div className="mb-6 flex flex-col gap-3">
-              {options.map((item, index) => {
-                return (
-                  <label
-                    key={item}
-                    htmlFor={item + index}>
-                    <input
-                      type="radio"
-                      className="hidden"
-                      name="options"
-                      id={item + index}
-                    />
-                    <div
-                      onClick={() => {
-                        setUserData((prev) => {
-                          let tempArr = structuredClone(prev);
-                          tempArr[questionNum].answered = index;
-                          return tempArr;
-                        });
-                      }}
-                      className={`${userData[questionNum].answered == index ? 'bg-blue-600' : 'bg-slate-100 hover:bg-slate-200'} grid cursor-pointer grid-cols-[1fr_min-content] items-center gap-4 rounded-lg p-4`}>
-                      <div className={`${userData[questionNum].answered == index ? 'text-white' : ''} text-base font-normal`}>{item}</div>
-                      <div className={`${userData[questionNum].answered == index ? 'border-white bg-white' : 'border-slate-500'} grid h-5 w-5 place-items-center rounded-full border-2`}>
-                        <SvgSuccess className={`${userData[questionNum].answered == index ? 'stroke-blue-600' : 'stroke-transparent'} h-4 w-4`} />
-                      </div>
+          </div>
+          <div className="mb-6 grid grid-rows-[repeat(4,min-content)] gap-3 overflow-x-auto">
+            {options.map((item, index) => {
+              return (
+                <label
+                  key={item}
+                  htmlFor={item + index}>
+                  <input
+                    type="radio"
+                    className="hidden"
+                    name="options"
+                    id={item + index}
+                  />
+                  <div
+                    onClick={() => {
+                      setUserData((prev) => {
+                        let tempArr = structuredClone(prev);
+                        tempArr[questionNum].answered = index;
+                        return tempArr;
+                      });
+                    }}
+                    className={`${userData[questionNum].answered == index ? 'bg-blue-600' : 'bg-slate-100 hover:bg-slate-200'} flex cursor-pointer items-center justify-between gap-4 rounded-lg p-4`}>
+                    <div className={`${userData[questionNum].answered == index ? 'text-white' : ''} text-base font-normal`}>{item}</div>
+                    <div className={`${userData[questionNum].answered == index ? 'border-white bg-white' : 'border-slate-500'} grid h-5 w-5 place-items-center rounded-full border-2`}>
+                      <SvgSuccess className={`${userData[questionNum].answered == index ? 'stroke-blue-600' : 'stroke-transparent'} h-4 w-4`} />
                     </div>
-                  </label>
-                );
-              })}
-            </div>
+                  </div>
+                </label>
+              );
+            })}
           </div>
           <div className="grid grid-cols-2 items-center justify-between gap-4">
             <button
