@@ -99,9 +99,6 @@ const QuizCard = ({ data }) => {
           <div>
             <div className="mb-4 flex items-center justify-between">
               <span className="text-sm font-semibold text-slate-500">Choose 1 of 4 answers</span>
-              <div className="group cursor-pointer rounded-xl p-2 transition-colors hover:bg-slate-300">
-                <SvgFlag className="h-5 w-5 fill-slate-500 transition-colors duration-300 group-hover:fill-slate-800" />
-              </div>
             </div>
             <div className="mb-6 text-xl font-semibold">{question}</div>
             <div className="mb-6 flex flex-col gap-3">
