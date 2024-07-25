@@ -11,5 +11,5 @@ export default async function Home({ params }) {
       </div>
     );
   }
-  return <div className="container grid w-full justify-center py-10">{data && <QuizCard data={data} />}</div>;
+  return <div className="container grid w-full grid-cols-1 justify-center py-10">{data && <QuizCard data={data} />}</div>;
 }

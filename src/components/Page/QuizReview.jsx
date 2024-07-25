@@ -20,7 +20,7 @@ const QuizReview = ({ data, userData, setIsReviewAnswer }) => {
             return (
               <div
                 key={item._id}
-                className="grid grid-cols-[min-content_1fr] gap-2">
+                className="grid grid-cols-[min-content_minmax(0,1fr)] gap-2">
                 <div className="text-lg font-normal">{index + 1}. </div>
                 <div className="flex flex-col">
                   <div className="mb-3 text-xl font-semibold">{item.question}</div>
