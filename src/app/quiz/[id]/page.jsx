@@ -1,11 +1,7 @@
+import { getQuestions } from '@/api/api';
 import QuizCard from '@/components/QuizCard';
 
 export default async function Home({ params }) {
-  const resp = await fetch(`http://127.0.0.1:3000/api/question?categoryId=${params.id}`);
-  const data = await resp.json();
-  return (
-    <div className="container py-10">
-      <QuizCard data={data} />
-    </div>
-  );
+  let data = await getQuestions(params.id);
+  return <div className="container py-10">{data && <QuizCard data={data} />}</div>;
 }

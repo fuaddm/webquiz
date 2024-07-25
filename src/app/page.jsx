@@ -1,20 +1,12 @@
+import { getCategories } from '@/api/api';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Stars from '@/components/Stars';
 import { headers } from 'next/headers';
 
 export default async function Home() {
-  const headersList = headers();
-  const domain = headersList.get('host') || '';
-  const fullUrl = 'https://webquiz-5hbe.vercel.app/';
-
-  console.log(fullUrl);
-  const resp = await fetch(`${fullUrl}/api/category`);
   let data = null;
-  if (resp.ok) {
-    console.log('first');
-    data = await resp.json();
-  }
+  data = await getCategories();
 
   return (
     <div className="container mb-20 flex flex-col items-center pb-6 pt-10">
