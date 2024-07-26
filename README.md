@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WebQuiz 🎉
 
-## Getting Started
+Hey there! I’m excited to share WebQuiz with you! It’s a fun and challenging way to test your skills across HTML, CSS, and JavaScript. https://webquiz-fd.vercel.app/
 
-First, run the development server:
+## What’s Inside? 🧩
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Categories**:
+  - **HTML**: Dive into everything from basic tags to complex structures.
+  - **CSS**: Style your way through questions that range from simple to sophisticated.
+  - **JavaScript**: Tackle questions that go from easy to brain-bending!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **20 Questions Per Category**: Each category features 20 questions, escalating from easy to hard. Perfect for honing your skills!
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Styled with Tailwind CSS**: Enjoy a sleek, modern look thanks to Tailwind CSS.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Getting Started 🚀
 
-## Learn More
+1. **Clone the Repo**
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    git clone https://github.com/fuaddm/webquiz.git
+    cd webquiz
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Set Up the Frontend**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+    npm install
+    npm run dev
+    ```
 
-## Deploy on Vercel
+    Check out the quizzes at [http://localhost:3000](http://localhost:3000)!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Ready to Test Your Skills? 🎉
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Head over to [http://localhost:3000](http://localhost:3000), pick a category, and start answering questions. Let’s see how many you can ace!
+
+---
+
+Happy quizzing and good luck! 🏆
