@@ -1,6 +1,6 @@
 # WebQuiz 🎉
 
-Hey there! I’m excited to share WebQuiz with you! It’s a fun and challenging way to test your skills across HTML, CSS, and JavaScript. https://webquiz-fd.vercel.app/
+Hey there! I’m excited to share WebQuiz with you! It’s a fun and challenging way to test your skills across HTML, CSS, and JavaScript. Check it out [here](https://webquiz-fd.vercel.app/)!
 
 ## What’s Inside? 🧩
 
@@ -13,28 +13,13 @@ Hey there! I’m excited to share WebQuiz with you! It’s a fun and challenging
 
 - **Styled with Tailwind CSS**: Enjoy a sleek, modern look thanks to Tailwind CSS.
 
-## Getting Started 🚀
+## Tech Stack 🚀
 
-1. **Clone the Repo**
+- **Next.js**: The React framework for server-side rendering and static site generation. It powers the frontend with fast performance and great SEO capabilities.
+- **React**: The library for building dynamic user interfaces. It makes the quiz interactions smooth and responsive.
+- **Tailwind CSS**: A utility-first CSS framework that gives the app its clean and modern design with minimal effort.
 
-    ```bash
-    git clone https://github.com/fuaddm/webquiz.git
-    cd webquiz
-    ```
+## Happy Quizzing! 🏆
 
-2. **Set Up the Frontend**
+Dive into the quizzes and see how you score. Good luck and have fun!
 
-    ```bash
-    npm install
-    npm run dev
-    ```
-
-    Check out the quizzes at [http://localhost:3000](http://localhost:3000)!
-
-## Ready to Test Your Skills? 🎉
-
-Head over to [http://localhost:3000](http://localhost:3000), pick a category, and start answering questions. Let’s see how many you can ace!
-
----
-
-Happy quizzing and good luck! 🏆
