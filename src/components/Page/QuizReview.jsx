@@ -2,6 +2,8 @@ import React from 'react';
 import SvgSuccess from '@/svg/Success';
 import SvgError from '@/svg/Error';
 import ArrowV2 from '@/svg/ArrowV2';
+import { CodeBlock, github } from 'react-code-blocks';
+import js_beautify from 'js-beautify';
 
 const QuizReview = ({ data, userData, setIsReviewAnswer }) => {
   return (
@@ -17,13 +19,44 @@ const QuizReview = ({ data, userData, setIsReviewAnswer }) => {
         <div className="mb-6 text-center text-2xl font-bold">Quiz</div>
         <div className="flex flex-col gap-3">
           {data.questions.map((item, index) => {
+            let questionText = item.question;
+
+            function getCodePart(question) {
+              const tagStart = question.indexOf('<fdCode>');
+              const tagEnd = question.indexOf('</fdCode>');
+              if (tagStart != -1 && tagEnd != -1) {
+                const codePart = question.slice(tagStart + 8, tagEnd);
+                questionText = questionText.split('');
+                questionText.splice(tagStart, tagEnd + 8);
+                questionText = questionText.join('');
+                return codePart;
+              }
+              return null;
+            }
+            const codePart = getCodePart(item.question);
+
             return (
               <div
                 key={item._id}
                 className="grid grid-cols-[min-content_minmax(0,1fr)] gap-2">
                 <div className="text-lg font-normal">{index + 1}. </div>
                 <div className="flex flex-col">
-                  <div className="mb-3 text-xl font-semibold">{item.question}</div>
+                  <div className="mb-3 text-xl font-semibold">
+                    {questionText}
+                    <div className="text-base">
+                      {codePart && (
+                        <div className="mt-2">
+                          <CodeBlock
+                            text={js_beautify(codePart, {})}
+                            language={'javascript'}
+                            showLineNumbers={false}
+                            wrapLongLines={true}
+                            theme={github}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div className="grid grid-rows-[repeat(4,min-content)] gap-3 overflow-x-auto">
                     {item.options.map((option, optionsIndex) => {
                       if (userData[index].answered == userData[index].answer) {
